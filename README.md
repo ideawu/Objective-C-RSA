@@ -1,6 +1,8 @@
 # Objective-C-RSA
 Doing RSA encryption with Objective-C iOS
 
+## If you have the same qustion as mine: [iOS Objective-C RSA encrypt with only public key and descrypt with PHP](http://www.ideawu.com/blog/post/132.html)
+
 ## Usage
 
 ```
