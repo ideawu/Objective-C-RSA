@@ -1,10 +1,7 @@
-//
-//  RSA.h
-//  My
-//
-//  Created by ideawu on 15-2-3.
-//  Copyright (c) 2015年 ideawu. All rights reserved.
-//
+/*
+ @author: ideawu
+ @link: https://github.com/ideawu/Objective-C-RSA
+*/
 
 #import <Foundation/Foundation.h>
 
