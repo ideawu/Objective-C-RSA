@@ -10,4 +10,6 @@
 + (NSString *)encryptString:(NSString *)str publicKey:(NSString *)pubKey;
 + (NSString *)encryptData:(NSData *)data publicKey:(NSString *)pubKey;
 
++ (NSData *)decryptData:(NSData *)data publicKey:(NSString *)pubKey;
+
 @end
