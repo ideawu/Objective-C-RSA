@@ -125,11 +125,12 @@ static NSData *base64_decode(NSString *str){
 }
 
 + (NSString *)encryptString:(NSString *)str publicKey:(NSString *)pubKey{
-	NSData* data = [str dataUsingEncoding:NSUTF8StringEncoding];
-	return [RSA encryptData:data publicKey:pubKey];
+	NSData *data = [RSA encryptData:[str dataUsingEncoding:NSUTF8StringEncoding] publicKey:pubKey];
+	NSString *ret = base64_encode_data(data);
+	return ret;
 }
 
-+ (NSString *)encryptData:(NSData *)data publicKey:(NSString *)pubKey{
++ (NSData *)encryptData:(NSData *)data publicKey:(NSString *)pubKey{
 	if(!data || !pubKey){
 		return nil;
 	}
@@ -156,15 +157,21 @@ static NSData *base64_decode(NSString *str){
 						   outbuf,
 						   &outlen
 						   );
-	NSString *ret = nil;
+	NSData *ret = nil;
 	if (status != 0) {
 		//NSLog(@"SecKeyEncrypt fail. Error Code: %ld", status);
 	}else{
-		NSData *data = [NSData dataWithBytes:outbuf length:outlen];
-		ret = base64_encode_data(data);
+		ret = [NSData dataWithBytes:outbuf length:outlen];
 	}
 	free(outbuf);
 	CFRelease(keyRef);
+	return ret;
+}
+
++ (NSString *)decryptString:(NSString *)str publicKey:(NSString *)pubKey{
+	NSData *data = [[NSData alloc] initWithBase64EncodedString:str options:NSDataBase64DecodingIgnoreUnknownCharacters];
+	data = [RSA decryptData:data publicKey:pubKey];
+	NSString *ret = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	return ret;
 }
 
