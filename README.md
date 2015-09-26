@@ -3,6 +3,14 @@ Doing RSA encryption with Objective-C iOS
 
 ## If you have the same qustion as mine: [iOS Objective-C RSA encrypt with only public key and descrypt with PHP](http://www.ideawu.com/blog/post/132.html)
 
+## History
+
+### 2015-09-26
+
+- New functions:
+  - `(NSString *)decryptString:(NSString *)str privateKey:(NSString *)privKey;`
+  - `(NSData *)decryptData:(NSData *)data privateKey:(NSString *)privKey;`
+
 ## Usage
 
 ```
@@ -12,3 +20,8 @@ NSString *pubkey = @"-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADC
 NSString *ret = [RSA encryptString:@"hello world!" publicKey:pubkey];
 NSLog(@"encrypted: %@", ret);
 ```
+
+## Swift version
+
+- [https://github.com/btnguyen2k/swift-rsautils](https://github.com/btnguyen2k/swift-rsautils)
+
