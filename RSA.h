@@ -12,7 +12,7 @@
 // return raw data
 + (NSData *)encryptData:(NSData *)data publicKey:(NSString *)pubKey;
 // return base64 encoded string
-// enc with private key NOT working YES!
+// enc with private key NOT working YET!
 //+ (NSString *)encryptString:(NSString *)str privateKey:(NSString *)privKey;
 // return raw data
 //+ (NSData *)encryptData:(NSData *)data privateKey:(NSString *)privKey;
