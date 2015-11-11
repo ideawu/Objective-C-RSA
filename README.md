@@ -21,6 +21,11 @@ NSString *ret = [RSA encryptString:@"hello world!" publicKey:pubkey];
 NSLog(@"encrypted: %@", ret);
 ```
 
+## The PHP script for testing
+
+See `encrypt.php` in the repository.
+
+
 ## Swift version
 
 - [https://github.com/btnguyen2k/swift-rsautils](https://github.com/btnguyen2k/swift-rsautils)

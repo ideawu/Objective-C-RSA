@@ -228,6 +228,45 @@ static NSData *base64_decode(NSString *str){
 
 /* START: Encryption & Decryption with RSA private key */
 
++ (NSData *)encryptData:(NSData *)data withKeyRef:(SecKeyRef) keyRef{
+	const uint8_t *srcbuf = (const uint8_t *)[data bytes];
+	size_t srclen = (size_t)data.length;
+	
+	size_t block_size = SecKeyGetBlockSize(keyRef) * sizeof(uint8_t);
+	void *outbuf = malloc(block_size);
+	size_t src_block_size = block_size - 11;
+	
+	NSMutableData *ret = [[NSMutableData alloc] init];
+	for(int idx=0; idx<srclen; idx+=src_block_size){
+		//NSLog(@"%d/%d block_size: %d", idx, (int)srclen, (int)block_size);
+		size_t data_len = srclen - idx;
+		if(data_len > src_block_size){
+			data_len = src_block_size;
+		}
+		
+		size_t outlen = block_size;
+		OSStatus status = noErr;
+		status = SecKeyEncrypt(keyRef,
+							   kSecPaddingPKCS1,
+							   srcbuf + idx,
+							   data_len,
+							   outbuf,
+							   &outlen
+							   );
+		if (status != 0) {
+			NSLog(@"SecKeyEncrypt fail. Error Code: %d", status);
+			ret = nil;
+			break;
+		}else{
+			[ret appendBytes:outbuf length:outlen];
+		}
+	}
+	
+	free(outbuf);
+	CFRelease(keyRef);
+	return ret;
+}
+
 + (NSString *)encryptString:(NSString *)str privateKey:(NSString *)privKey{
 	NSData *data = [RSA encryptData:[str dataUsingEncoding:NSUTF8StringEncoding] privateKey:privKey];
 	NSString *ret = base64_encode_data(data);
@@ -242,35 +281,62 @@ static NSData *base64_decode(NSString *str){
 	if(!keyRef){
 		return nil;
 	}
+	return [RSA encryptData:data withKeyRef:keyRef];
+}
 
++ (NSData *)decryptData:(NSData *)data withKeyRef:(SecKeyRef) keyRef{
 	const uint8_t *srcbuf = (const uint8_t *)[data bytes];
 	size_t srclen = (size_t)data.length;
-
-	size_t outlen = SecKeyGetBlockSize(keyRef) * sizeof(uint8_t);
-	if(srclen > outlen - 11){
-		CFRelease(keyRef);
-		return nil;
+	
+	size_t block_size = SecKeyGetBlockSize(keyRef) * sizeof(uint8_t);
+	UInt8 *outbuf = malloc(block_size);
+	size_t src_block_size = block_size;
+	
+	NSMutableData *ret = [[NSMutableData alloc] init];
+	for(int idx=0; idx<srclen; idx+=src_block_size){
+		//NSLog(@"%d/%d block_size: %d", idx, (int)srclen, (int)block_size);
+		size_t data_len = srclen - idx;
+		if(data_len > src_block_size){
+			data_len = src_block_size;
+		}
+		
+		size_t outlen = block_size;
+		OSStatus status = noErr;
+		status = SecKeyDecrypt(keyRef,
+							   kSecPaddingNone,
+							   srcbuf + idx,
+							   data_len,
+							   outbuf,
+							   &outlen
+							   );
+		if (status != 0) {
+			NSLog(@"SecKeyEncrypt fail. Error Code: %d", status);
+			ret = nil;
+			break;
+		}else{
+			//the actual decrypted data is in the middle, locate it!
+			int idxFirstZero = -1;
+			int idxNextZero = (int)outlen;
+			for ( int i = 0; i < outlen; i++ ) {
+				if ( outbuf[i] == 0 ) {
+					if ( idxFirstZero < 0 ) {
+						idxFirstZero = i;
+					} else {
+						idxNextZero = i;
+						break;
+					}
+				}
+			}
+			
+			[ret appendBytes:&outbuf[idxFirstZero+1] length:idxNextZero-idxFirstZero-1];
+		}
 	}
-	void *outbuf = malloc(outlen);
-
-	OSStatus status = noErr;
-	status = SecKeyEncrypt(keyRef,
-						   kSecPaddingPKCS1,
-						   srcbuf,
-						   srclen,
-						   outbuf,
-						   &outlen
-						   );
-	NSData *ret = nil;
-	if (status != 0) {
-		//NSLog(@"SecKeyEncrypt fail. Error Code: %ld", status);
-	}else{
-		ret = [NSData dataWithBytes:outbuf length:outlen];
-	}
+	
 	free(outbuf);
 	CFRelease(keyRef);
 	return ret;
 }
+
 
 + (NSString *)decryptString:(NSString *)str privateKey:(NSString *)privKey{
 	NSData *data = [[NSData alloc] initWithBase64EncodedString:str options:NSDataBase64DecodingIgnoreUnknownCharacters];
@@ -287,50 +353,7 @@ static NSData *base64_decode(NSString *str){
 	if(!keyRef){
 		return nil;
 	}
-
-	const uint8_t *srcbuf = (const uint8_t *)[data bytes];
-	size_t srclen = (size_t)data.length;
-
-	size_t outlen = SecKeyGetBlockSize(keyRef) * sizeof(uint8_t);
-	if(srclen != outlen){
-		//TODO currently we are able to decrypt only one block!
-		CFRelease(keyRef);
-		return nil;
-	}
-	UInt8 *outbuf = malloc(outlen);
-
-	//use kSecPaddingNone in decryption mode
-	OSStatus status = noErr;
-	status = SecKeyDecrypt(keyRef,
-						   kSecPaddingNone,
-						   srcbuf,
-						   srclen,
-						   outbuf,
-						   &outlen
-						   );
-	NSData *result = nil;
-	if (status != 0) {
-		//NSLog(@"SecKeyEncrypt fail. Error Code: %ld", status);
-	}else{
-		//the actual decrypted data is in the middle, locate it!
-		int idxFirstZero = -1;
-		int idxNextZero = (int)outlen;
-		for ( int i = 0; i < outlen; i++ ) {
-			if ( outbuf[i] == 0 ) {
-				if ( idxFirstZero < 0 ) {
-					idxFirstZero = i;
-				} else {
-					idxNextZero = i;
-					break;
-				}
-			}
-		}
-
-		result = [NSData dataWithBytes:&outbuf[idxFirstZero+1] length:idxNextZero-idxFirstZero-1];
-	}
-	free(outbuf);
-	CFRelease(keyRef);
-	return result;
+	return [RSA decryptData:data withKeyRef:keyRef];
 }
 
 /* END: Encryption & Decryption with RSA private key */
@@ -351,34 +374,7 @@ static NSData *base64_decode(NSString *str){
 	if(!keyRef){
 		return nil;
 	}
-	
-	const uint8_t *srcbuf = (const uint8_t *)[data bytes];
-	size_t srclen = (size_t)data.length;
-	
-	size_t outlen = SecKeyGetBlockSize(keyRef) * sizeof(uint8_t);
-	if(srclen > outlen - 11){
-		CFRelease(keyRef);
-		return nil;
-	}
-	void *outbuf = malloc(outlen);
-	
-	OSStatus status = noErr;
-	status = SecKeyEncrypt(keyRef,
-						   kSecPaddingPKCS1,
-						   srcbuf,
-						   srclen,
-						   outbuf,
-						   &outlen
-						   );
-	NSData *ret = nil;
-	if (status != 0) {
-		//NSLog(@"SecKeyEncrypt fail. Error Code: %ld", status);
-	}else{
-		ret = [NSData dataWithBytes:outbuf length:outlen];
-	}
-	free(outbuf);
-	CFRelease(keyRef);
-	return ret;
+	return [RSA encryptData:data withKeyRef:keyRef];
 }
 
 + (NSString *)decryptString:(NSString *)str publicKey:(NSString *)pubKey{
@@ -396,50 +392,7 @@ static NSData *base64_decode(NSString *str){
 	if(!keyRef){
 		return nil;
 	}
-	
-	const uint8_t *srcbuf = (const uint8_t *)[data bytes];
-	size_t srclen = (size_t)data.length;
-	
-	size_t outlen = SecKeyGetBlockSize(keyRef) * sizeof(uint8_t);
-	if(srclen != outlen){
-		//TODO currently we are able to decrypt only one block!
-		CFRelease(keyRef);
-		return nil;
-	}
-	UInt8 *outbuf = malloc(outlen);
-	
-	//use kSecPaddingNone in decryption mode
-	OSStatus status = noErr;
-	status = SecKeyDecrypt(keyRef,
-						   kSecPaddingNone,
-						   srcbuf,
-						   srclen,
-						   outbuf,
-						   &outlen
-						   );
-	NSData *result = nil;
-	if (status != 0) {
-		//NSLog(@"SecKeyEncrypt fail. Error Code: %ld", status);
-	}else{
-		//the actual decrypted data is in the middle, locate it!
-		int idxFirstZero = -1;
-		int idxNextZero = (int)outlen;
-		for ( int i = 0; i < outlen; i++ ) {
-			if ( outbuf[i] == 0 ) {
-				if ( idxFirstZero < 0 ) {
-					idxFirstZero = i;
-				} else {
-					idxNextZero = i;
-					break;
-				}
-			}
-		}
-		
-		result = [NSData dataWithBytes:&outbuf[idxFirstZero+1] length:idxNextZero-idxFirstZero-1];
-	}
-	free(outbuf);
-	CFRelease(keyRef);
-	return result;
+	return [RSA decryptData:data withKeyRef:keyRef];
 }
 
 /* END: Encryption & Decryption with RSA public key */
