@@ -15,6 +15,8 @@ Doing RSA encryption with Objective-C iOS
 	NSString *decrypted = [RSA decryptString:encrypted privateKey:privkey];
 	NSLog(@"decrypted: %@", decrypted);
 
+__Notice: iOS 10 requires Keychain Entitlements__
+
 ## History
 
 ### 2015-09-26
