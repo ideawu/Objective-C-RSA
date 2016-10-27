@@ -1,0 +1,5 @@
+use_frameworks!
+
+target 'RSAUtil' do
+  pod 'RSA', :path => '../'
+end

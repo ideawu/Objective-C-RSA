@@ -2,3 +2,6 @@
 *.swp
 *.xcuserstate
 RSAUtil.xcodeproj/xcuserdata
+/Example/Pods/Pods.xcodeproj/xcuserdata/chorsfield.xcuserdatad/xcschemes/Pods-RSAUtil.xcscheme
+/Example/Pods/Pods.xcodeproj/xcuserdata/chorsfield.xcuserdatad/xcschemes/RSA.xcscheme
+/Example/RSA.xcworkspace/xcuserdata/chorsfield.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
