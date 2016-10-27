@@ -244,7 +244,7 @@ static NSData *base64_decode(NSString *str){
 	size_t src_block_size = block_size - 11;
 	
 	NSMutableData *ret = [[NSMutableData alloc] init];
-	for(int idx=0; idx<srclen; idx+=src_block_size){
+	for(NSUInteger idx=0; idx<srclen; idx+=src_block_size){
 		//NSLog(@"%d/%d block_size: %d", idx, (int)srclen, (int)block_size);
 		size_t data_len = srclen - idx;
 		if(data_len > src_block_size){
@@ -300,7 +300,7 @@ static NSData *base64_decode(NSString *str){
 	size_t src_block_size = block_size;
 	
 	NSMutableData *ret = [[NSMutableData alloc] init];
-	for(int idx=0; idx<srclen; idx+=src_block_size){
+	for(NSUInteger idx=0; idx<srclen; idx+=src_block_size){
 		//NSLog(@"%d/%d block_size: %d", idx, (int)srclen, (int)block_size);
 		size_t data_len = srclen - idx;
 		if(data_len > src_block_size){
@@ -322,9 +322,9 @@ static NSData *base64_decode(NSString *str){
 			break;
 		}else{
 			//the actual decrypted data is in the middle, locate it!
-			int idxFirstZero = -1;
-			int idxNextZero = (int)outlen;
-			for ( int i = 0; i < outlen; i++ ) {
+			NSUInteger idxFirstZero = -1;
+			NSUInteger idxNextZero = outlen;
+			for ( NSUInteger i = 0; i < outlen; i++ ) {
 				if ( outbuf[i] == 0 ) {
 					if ( idxFirstZero < 0 ) {
 						idxFirstZero = i;
