@@ -1,0 +1,22 @@
+{
+  "name": "RSA",
+  "version": "0.1.0",
+  "summary": "A short description of RSA.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/RSA",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "chorsfield": "chorsfield@defymedia.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/RSA.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "RSA/Classes/**/*"
+}
