@@ -12,16 +12,17 @@
 		309715711DC277B100A0EFDA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3097156F1DC277B100A0EFDA /* ViewController.m */; };
 		309715761DC277BB00A0EFDA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 309715721DC277BB00A0EFDA /* LaunchScreen.xib */; };
 		309715771DC277BB00A0EFDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 309715741DC277BB00A0EFDA /* Main.storyboard */; };
+		3A186C539D581D421E399461 /* Pods_RSAUtil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F703FC13268BE37346A2DA35 /* Pods_RSAUtil.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
-		A75AC1B50F6D9A15761D52EB /* Pods_RSA_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AE31E7D550C84310B1BBBD /* Pods_RSA_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		01FD394ACDA5719575FFDC6F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		09D3620CA3FB76A97423D098 /* Pods-RSAUtil.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSAUtil.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RSAUtil/Pods-RSAUtil.debug.xcconfig"; sourceTree = "<group>"; };
 		2BA247247903D2F5067C46DA /* Pods-RSA_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSA_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RSA_Example/Pods-RSA_Example.release.xcconfig"; sourceTree = "<group>"; };
 		3097156A1DC2778E00A0EFDA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3097156C1DC277B100A0EFDA /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -43,7 +44,9 @@
 		87F2819C65B2789EA8AD85B1 /* RSA.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RSA.podspec; path = ../RSA.podspec; sourceTree = "<group>"; };
 		D3C1046EB9B385F89E13BE89 /* Pods-RSA_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSA_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RSA_Tests/Pods-RSA_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D7E6FC7814022EB9F33AA4C8 /* Pods_RSA_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSA_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFD7E5BFF680EC9C01D5C053 /* Pods-RSAUtil.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSAUtil.release.xcconfig"; path = "Pods/Target Support Files/Pods-RSAUtil/Pods-RSAUtil.release.xcconfig"; sourceTree = "<group>"; };
 		F188365C9508F355213CC22C /* Pods-RSA_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSA_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RSA_Example/Pods-RSA_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		F703FC13268BE37346A2DA35 /* Pods_RSAUtil.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSAUtil.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8C4F67C7232BDA952475BD1 /* Pods-RSA_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSA_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RSA_Tests/Pods-RSA_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -55,7 +58,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				A75AC1B50F6D9A15761D52EB /* Pods_RSA_Example.framework in Frameworks */,
+				3A186C539D581D421E399461 /* Pods_RSAUtil.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +72,8 @@
 				2BA247247903D2F5067C46DA /* Pods-RSA_Example.release.xcconfig */,
 				F8C4F67C7232BDA952475BD1 /* Pods-RSA_Tests.debug.xcconfig */,
 				D3C1046EB9B385F89E13BE89 /* Pods-RSA_Tests.release.xcconfig */,
+				09D3620CA3FB76A97423D098 /* Pods-RSAUtil.debug.xcconfig */,
+				DFD7E5BFF680EC9C01D5C053 /* Pods-RSAUtil.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -101,6 +106,7 @@
 				6003F5AF195388D20070C39A /* XCTest.framework */,
 				30AE31E7D550C84310B1BBBD /* Pods_RSA_Example.framework */,
 				D7E6FC7814022EB9F33AA4C8 /* Pods_RSA_Tests.framework */,
+				F703FC13268BE37346A2DA35 /* Pods_RSAUtil.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -234,7 +240,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RSA_Example/Pods-RSA_Example-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RSAUtil/Pods-RSAUtil-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D941E3B8E0BC4EACFB17FA00 /* [CP] Embed Pods Frameworks */ = {
@@ -249,7 +255,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RSA_Example/Pods-RSA_Example-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RSAUtil/Pods-RSAUtil-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -362,7 +368,7 @@
 		};
 		6003F5C0195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F188365C9508F355213CC22C /* Pods-RSA_Example.debug.xcconfig */;
+			baseConfigurationReference = 09D3620CA3FB76A97423D098 /* Pods-RSAUtil.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -377,7 +383,7 @@
 		};
 		6003F5C1195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2BA247247903D2F5067C46DA /* Pods-RSA_Example.release.xcconfig */;
+			baseConfigurationReference = DFD7E5BFF680EC9C01D5C053 /* Pods-RSAUtil.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
