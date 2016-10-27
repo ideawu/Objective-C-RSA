@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-RSA_Example.xcscheme</key>
+		<key>Pods-RSAUtil.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,17 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>B4F4BCFC39D80B8BFB99EBC0261C8A01</key>
+		<key>982328BCC33DAE03990D40CC3FB6A5E2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CB68AE72CC202BFB68B1A8077065E5A1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FFE0CE3B4B63DAF4F2A47F43C042B54B</key>
+		<key>AB7F83E307CD01B093D2C1768845FE49</key>
 		<dict>
 			<key>primary</key>
 			<true/>

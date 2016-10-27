@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B4F4BCFC39D80B8BFB99EBC0261C8A01"
-               BuildableName = "Pods_RSA_Example.framework"
-               BlueprintName = "Pods-RSA_Example"
+               BlueprintIdentifier = "982328BCC33DAE03990D40CC3FB6A5E2"
+               BuildableName = "Pods_RSAUtil.framework"
+               BlueprintName = "Pods-RSAUtil"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B4F4BCFC39D80B8BFB99EBC0261C8A01"
-            BuildableName = "Pods_RSA_Example.framework"
-            BlueprintName = "Pods-RSA_Example"
+            BlueprintIdentifier = "982328BCC33DAE03990D40CC3FB6A5E2"
+            BuildableName = "Pods_RSAUtil.framework"
+            BlueprintName = "Pods-RSAUtil"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

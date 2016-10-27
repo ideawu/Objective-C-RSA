@@ -3,16 +3,16 @@
   "version": "0.1.0",
   "summary": "A short description of RSA.",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/RSA",
+  "homepage": "https://github.com/ideawu/Objective-C-RSA",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "chorsfield": "chorsfield@defymedia.com"
+    "ideawu": ""
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/RSA.git",
+    "git": "https://github.com/ideawu/Objective-C-RSA",
     "tag": "0.1.0"
   },
   "platforms": {
