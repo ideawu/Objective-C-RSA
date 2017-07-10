@@ -46,12 +46,10 @@
 	NSLog(@"(PHP enc)Decrypted with private key: %@", decWithPrivKey);
 	
 	// Demo: encrypt with private key
-	// TODO: encryption with private key currently NOT WORKING YET!
-	//encWithPrivKey = [RSA encryptString:originString privateKey:privkey];
-	//NSLog(@"Enctypted with private key: %@", encWithPrivKey);
+	encWithPrivKey = [RSA encryptString:originString privateKey:privkey];
+	NSLog(@"Enctypted with private key: %@", encWithPrivKey);
 
 	// Demo: decrypt with public key
-	encWithPrivKey = @"aQkSJwaYppc2dOGEOtgPnzLYX1+1apwqJga2Z0k0cVCo7vCqOY58PyVuhp49Z+jHyIEmIyRLsU9WOWYNtPLg8XDnt1WLSst5VNyDlJJehbvm7gbXewxrPrG+ukZgo11GYJyU42DqNr59D3pQak7P2Ho6zFvN0XJ+lnVXJ1NTmgQFQYeFksTZFmJmQ5peHxpJy5XBvqjfYOEdlkeiiPKTnTQaQWKJfC9CRtWfTTYM2VKMBSTB0eNWto5XAu5BvgEgTXzndHGzsWW7pOHLqxVagr0xhNPPCB2DRE5PClE2FD9qNv0JcSMnUJ8bLvk6Yeh7mMDObJ4kBif5G9VnHjTqTg==";
 	decWithPublicKey = [RSA decryptString:encWithPrivKey publicKey:pubkey];
 	NSLog(@"(PHP enc)Decrypted with public key: %@", decWithPublicKey);
 }

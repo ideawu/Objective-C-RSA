@@ -235,7 +235,7 @@ static NSData *base64_decode(NSString *str){
 
 /* START: Encryption & Decryption with RSA private key */
 
-+ (NSData *)encryptData:(NSData *)data withKeyRef:(SecKeyRef) keyRef{
++ (NSData *)encryptData:(NSData *)data withKeyRef:(SecKeyRef) keyRef isSign:(BOOL)isSign {
 	const uint8_t *srcbuf = (const uint8_t *)[data bytes];
 	size_t srclen = (size_t)data.length;
 	
@@ -253,13 +253,24 @@ static NSData *base64_decode(NSString *str){
 		
 		size_t outlen = block_size;
 		OSStatus status = noErr;
-		status = SecKeyEncrypt(keyRef,
-							   kSecPaddingPKCS1,
-							   srcbuf + idx,
-							   data_len,
-							   outbuf,
-							   &outlen
-							   );
+        
+        if (isSign) {
+            status = SecKeyRawSign(keyRef,
+                                   kSecPaddingPKCS1,
+                                   srcbuf + idx,
+                                   data_len,
+                                   outbuf,
+                                   &outlen
+                                   );
+        } else {
+            status = SecKeyEncrypt(keyRef,
+                                   kSecPaddingPKCS1,
+                                   srcbuf + idx,
+                                   data_len,
+                                   outbuf,
+                                   &outlen
+                                   );
+        }
 		if (status != 0) {
 			NSLog(@"SecKeyEncrypt fail. Error Code: %d", status);
 			ret = nil;
@@ -288,7 +299,7 @@ static NSData *base64_decode(NSString *str){
 	if(!keyRef){
 		return nil;
 	}
-	return [RSA encryptData:data withKeyRef:keyRef];
+	return [RSA encryptData:data withKeyRef:keyRef isSign:YES];
 }
 
 + (NSData *)decryptData:(NSData *)data withKeyRef:(SecKeyRef) keyRef{
@@ -381,7 +392,7 @@ static NSData *base64_decode(NSString *str){
 	if(!keyRef){
 		return nil;
 	}
-	return [RSA encryptData:data withKeyRef:keyRef];
+	return [RSA encryptData:data withKeyRef:keyRef isSign:NO];
 }
 
 + (NSString *)decryptString:(NSString *)str publicKey:(NSString *)pubKey{
