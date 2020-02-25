@@ -17,6 +17,10 @@ Doing RSA encryption with Objective-C iOS
 
 __Notice: iOS 10 requires Keychain Entitlements__
 
+### Important
+
+Not thread-safe.
+
 ## History
 
 ### 2015-09-26
