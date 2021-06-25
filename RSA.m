@@ -339,9 +339,10 @@ static NSData *base64_decode(NSString *str){
 				if ( outbuf[i] == 0 ) {
 					if ( idxFirstZero < 0 ) {
 						idxFirstZero = i;
-					} else {
-						idxNextZero = i;
 						break;
+					} else {
+// 						idxNextZero = i;
+// 						break;
 					}
 				}
 			}
